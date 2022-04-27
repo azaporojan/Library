@@ -15,7 +15,6 @@ namespace Library
 {
     public partial class MainForm : Form
     {
-        private DatabaseManager dbManager = new DatabaseManager();
         private ElementsCreator<Panel> creator;
         public MainForm()
         {

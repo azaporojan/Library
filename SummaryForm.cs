@@ -1,6 +1,5 @@
 ﻿using Library.database;
 using Library.helpers;
-using Library.LibDataSourceTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +23,6 @@ namespace Library
 
         private void displayTop3MostSaledBooksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            reportViewer1.Visible = false;
             creator.createPanels(DatabaseManager.readTop3MostSaledBooks("DESC"));
             creator.displayBooks();
             label1.Visible = false;
@@ -37,7 +35,6 @@ namespace Library
 
         private void todayToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            reportViewer1.Visible = false;
             creator.removeBooks();
             label1.Visible = true;
             label1.Text = "Income Today: ";
@@ -63,7 +60,6 @@ namespace Library
         private void thisMonthToolStripMenuItem_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
-            reportViewer1.Visible = false;
             creator.removeBooks();
             label1.Text = "Income this month: ";
             DateTime today = DateTime.Now;
@@ -76,7 +72,6 @@ namespace Library
         private void yearToolStripMenuItem_Click(object sender, EventArgs e)
         {
             label1.Visible = true;
-            reportViewer1.Visible = false;
             creator.removeBooks();
             label1.Text = "Income this year: ";
             DateTime today = DateTime.Now;
@@ -88,48 +83,11 @@ namespace Library
 
         private void SummaryForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'libDataSource.Subcription' table. You can move, or remove it, as needed.
-            this.subcriptionTableAdapter.Fill(this.libDataSource.Subcription);
-            // TODO: This line of code loads data into the 'libDataSource.ReturnJoinBook' table. You can move, or remove it, as needed.
-            this.returnJoinBookTableAdapter.Fill(this.libDataSource.ReturnJoinBook);
-            // TODO: This line of code loads data into the 'libDataSource.IssueJoinBook' table. You can move, or remove it, as needed.
-            this.issueJoinBookTableAdapter.Fill(this.libDataSource.IssueJoinBook);
-
-
-            this.reportViewer2.RefreshReport();
-            this.reportViewer3.RefreshReport();
         }
 
         private void reportToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void allIssuedBooksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            reportViewer1.Visible = true;
-            reportViewer2.Visible = false;
-            reportViewer3.Visible = false;
-            this.reportViewer1.RefreshReport();
-        }
-
-        private void reportViewer1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void allReturnedBooksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            reportViewer2.Visible = true;
-            reportViewer1.Visible = false;
-            reportViewer3.Visible = false;
-        }
-
-        private void allSubcriptionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            reportViewer2.Visible = false;
-            reportViewer1.Visible = false;
-            reportViewer3.Visible = true;
         }
     }
 }
